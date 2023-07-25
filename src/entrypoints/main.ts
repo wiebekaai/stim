@@ -69,7 +69,7 @@ const importComponents = async (node: HTMLElement) =>
             },
             {
               rootMargin,
-            }
+            },
           );
           observer.observe(currentNode);
         });

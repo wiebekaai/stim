@@ -4,5 +4,5 @@ window.customElements.define(
     connectedCallback() {
       this.innerHTML = '🙆‍♂️';
     }
-  }
+  },
 );
