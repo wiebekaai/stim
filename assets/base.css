@@ -1,659 +1,3 @@
-/*
-! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
-*/
-
-/*
-1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
-2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
-*/
-
-*,
-::before,
-::after {
-  box-sizing: border-box;
-  /* 1 */
-  border-width: 0;
-  /* 2 */
-  border-style: solid;
-  /* 2 */
-  border-color: #e5e7eb;
-  /* 2 */
-}
-
-::before,
-::after {
-  --tw-content: '';
-}
-
-/*
-1. Use a consistent sensible line-height in all browsers.
-2. Prevent adjustments of font size after orientation changes in iOS.
-3. Use a more readable tab size.
-4. Use the user's configured `sans` font-family by default.
-5. Use the user's configured `sans` font-feature-settings by default.
-6. Use the user's configured `sans` font-variation-settings by default.
-*/
-
-html {
-  line-height: 1.5;
-  /* 1 */
-  -webkit-text-size-adjust: 100%;
-  /* 2 */
-  -moz-tab-size: 4;
-  /* 3 */
-  -o-tab-size: 4;
-     tab-size: 4;
-  /* 3 */
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  /* 4 */
-  font-feature-settings: normal;
-  /* 5 */
-  font-variation-settings: normal;
-  /* 6 */
-}
-
-/*
-1. Remove the margin in all browsers.
-2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
-*/
-
-body {
-  margin: 0;
-  /* 1 */
-  line-height: inherit;
-  /* 2 */
-}
-
-/*
-1. Add the correct height in Firefox.
-2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
-3. Ensure horizontal rules are visible by default.
-*/
-
-hr {
-  height: 0;
-  /* 1 */
-  color: inherit;
-  /* 2 */
-  border-top-width: 1px;
-  /* 3 */
-}
-
-/*
-Add the correct text decoration in Chrome, Edge, and Safari.
-*/
-
-abbr:where([title]) {
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
-}
-
-/*
-Remove the default font size and weight for headings.
-*/
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: inherit;
-  font-weight: inherit;
-}
-
-/*
-Reset links to optimize for opt-in styling instead of opt-out.
-*/
-
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-/*
-Add the correct font weight in Edge and Safari.
-*/
-
-b,
-strong {
-  font-weight: bolder;
-}
-
-/*
-1. Use the user's configured `mono` font family by default.
-2. Correct the odd `em` font sizing in all browsers.
-*/
-
-code,
-kbd,
-samp,
-pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  /* 1 */
-  font-size: 1em;
-  /* 2 */
-}
-
-/*
-Add the correct font size in all browsers.
-*/
-
-small {
-  font-size: 80%;
-}
-
-/*
-Prevent `sub` and `sup` elements from affecting the line height in all browsers.
-*/
-
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-
-sub {
-  bottom: -0.25em;
-}
-
-sup {
-  top: -0.5em;
-}
-
-/*
-1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
-2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
-3. Remove gaps between table borders by default.
-*/
-
-table {
-  text-indent: 0;
-  /* 1 */
-  border-color: inherit;
-  /* 2 */
-  border-collapse: collapse;
-  /* 3 */
-}
-
-/*
-1. Change the font styles in all browsers.
-2. Remove the margin in Firefox and Safari.
-3. Remove default padding in all browsers.
-*/
-
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: inherit;
-  /* 1 */
-  font-feature-settings: inherit;
-  /* 1 */
-  font-variation-settings: inherit;
-  /* 1 */
-  font-size: 100%;
-  /* 1 */
-  font-weight: inherit;
-  /* 1 */
-  line-height: inherit;
-  /* 1 */
-  color: inherit;
-  /* 1 */
-  margin: 0;
-  /* 2 */
-  padding: 0;
-  /* 3 */
-}
-
-/*
-Remove the inheritance of text transform in Edge and Firefox.
-*/
-
-button,
-select {
-  text-transform: none;
-}
-
-/*
-1. Correct the inability to style clickable types in iOS and Safari.
-2. Remove default button styles.
-*/
-
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: button;
-  /* 1 */
-  background-color: transparent;
-  /* 2 */
-  background-image: none;
-  /* 2 */
-}
-
-/*
-Use the modern Firefox focus style for all focusable elements.
-*/
-
-:-moz-focusring {
-  outline: auto;
-}
-
-/*
-Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
-*/
-
-:-moz-ui-invalid {
-  box-shadow: none;
-}
-
-/*
-Add the correct vertical alignment in Chrome and Firefox.
-*/
-
-progress {
-  vertical-align: baseline;
-}
-
-/*
-Correct the cursor style of increment and decrement buttons in Safari.
-*/
-
-::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
-  height: auto;
-}
-
-/*
-1. Correct the odd appearance in Chrome and Safari.
-2. Correct the outline style in Safari.
-*/
-
-[type='search'] {
-  -webkit-appearance: textfield;
-  /* 1 */
-  outline-offset: -2px;
-  /* 2 */
-}
-
-/*
-Remove the inner padding in Chrome and Safari on macOS.
-*/
-
-::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-/*
-1. Correct the inability to style clickable types in iOS and Safari.
-2. Change font properties to `inherit` in Safari.
-*/
-
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  /* 1 */
-  font: inherit;
-  /* 2 */
-}
-
-/*
-Add the correct display in Chrome and Safari.
-*/
-
-summary {
-  display: list-item;
-}
-
-/*
-Removes the default spacing and border for appropriate elements.
-*/
-
-blockquote,
-dl,
-dd,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-hr,
-figure,
-p,
-pre {
-  margin: 0;
-}
-
-fieldset {
-  margin: 0;
-  padding: 0;
-}
-
-legend {
-  padding: 0;
-}
-
-ol,
-ul,
-menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/*
-Reset default styling for dialogs.
-*/
-
-dialog {
-  padding: 0;
-}
-
-/*
-Prevent resizing textareas horizontally by default.
-*/
-
-textarea {
-  resize: vertical;
-}
-
-/*
-1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
-2. Set the default placeholder color to the user's configured gray 400 color.
-*/
-
-input::-moz-placeholder, textarea::-moz-placeholder {
-  opacity: 1;
-  /* 1 */
-  color: #9ca3af;
-  /* 2 */
-}
-
-input::placeholder,
-textarea::placeholder {
-  opacity: 1;
-  /* 1 */
-  color: #9ca3af;
-  /* 2 */
-}
-
-/*
-Set the default cursor for buttons.
-*/
-
-button,
-[role="button"] {
-  cursor: pointer;
-}
-
-/*
-Make sure disabled buttons don't get the pointer cursor.
-*/
-
-:disabled {
-  cursor: default;
-}
-
-/*
-1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
-2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
-   This can trigger a poorly considered lint error in some tools but is included by design.
-*/
-
-img,
-svg,
-video,
-canvas,
-audio,
-iframe,
-embed,
-object {
-  display: block;
-  /* 1 */
-  vertical-align: middle;
-  /* 2 */
-}
-
-/*
-Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
-*/
-
-img,
-video {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Make elements with the HTML hidden attribute stay hidden by default */
-
-[hidden] {
-  display: none;
-}
-
-*, ::before, ::after {
-  --tw-border-spacing-x: 0;
-  --tw-border-spacing-y: 0;
-  --tw-translate-x: 0;
-  --tw-translate-y: 0;
-  --tw-rotate: 0;
-  --tw-skew-x: 0;
-  --tw-skew-y: 0;
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
-  --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgb(59 130 246 / 0.5);
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --tw-shadow: 0 0 #0000;
-  --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
-}
-
-::backdrop {
-  --tw-border-spacing-x: 0;
-  --tw-border-spacing-y: 0;
-  --tw-translate-x: 0;
-  --tw-translate-y: 0;
-  --tw-rotate: 0;
-  --tw-skew-x: 0;
-  --tw-skew-y: 0;
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
-  --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgb(59 130 246 / 0.5);
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --tw-shadow: 0 0 #0000;
-  --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
-}
-
-.container {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
-
-.fixed {
-  position: fixed;
-}
-
-.sticky {
-  position: sticky;
-}
-
-.isolate {
-  isolation: isolate;
-}
-
-.block {
-  display: block;
-}
-
-.flex {
-  display: flex;
-}
-
-.table {
-  display: table;
-}
-
-.grid {
-  display: grid;
-}
-
-.hidden {
-  display: none;
-}
-
-.max-h-screen {
-  max-height: 100vh;
-}
-
-.transform {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-.\!bg-black {
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity)) !important;
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-.capitalize {
-  text-transform: capitalize;
-}
-
-.italic {
-  font-style: italic;
-}
-
-.shadow {
-  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.outline {
-  outline-style: solid;
-}
-
-.filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 :root {
   --alpha-button-background: 1;
   --alpha-button-border: 1;
@@ -905,10 +249,6 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   bottom: 0;
   left: 0;
   z-index: 2;
-}
-
-::-moz-selection {
-  background-color: rgba(var(--color-foreground), 0.2);
 }
 
 ::selection {
@@ -1295,7 +635,6 @@ h3 .icon-arrow,
 }
 
 /* arrow animation */
-
 .animate-arrow .icon-arrow path {
   transform: translateX(-0.25rem);
   transition: transform var(--duration-short) ease;
@@ -1306,7 +645,6 @@ h3 .icon-arrow,
 }
 
 /* base-details-summary */
-
 summary {
   cursor: pointer;
   list-style: none;
@@ -1360,7 +698,6 @@ summary::-webkit-details-marker {
 }
 
 /* base-focus */
-
 /*
   Focus ring - default (with offset)
 */
@@ -1377,7 +714,6 @@ summary::-webkit-details-marker {
 }
 
 /* Fallback - for browsers that don't support :focus-visible, a fallback is set for :focus */
-
 .focused,
 .no-js *:focus {
   outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
@@ -1386,7 +722,6 @@ summary::-webkit-details-marker {
 }
 
 /* Negate the fallback side-effect for browsers that support :focus-visible */
-
 .no-js *:focus:not(:focus-visible) {
   outline: 0;
   box-shadow: none;
@@ -1419,7 +754,6 @@ summary::-webkit-details-marker {
 */
 
 /* Dangerous for a11y - Use with care */
-
 .focus-none {
   box-shadow: none !important;
   outline: 0 !important;
@@ -1444,7 +778,6 @@ summary::-webkit-details-marker {
 }
 
 /* component-title */
-
 .title,
 .title-wrapper-with-link {
   margin: 3rem 0 2rem;
@@ -1554,22 +887,19 @@ summary::-webkit-details-marker {
 }
 
 /* component-grid */
-
 .grid {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 2rem;
   padding: 0;
   list-style: none;
-  -moz-column-gap: var(--grid-mobile-horizontal-spacing);
-       column-gap: var(--grid-mobile-horizontal-spacing);
+  column-gap: var(--grid-mobile-horizontal-spacing);
   row-gap: var(--grid-mobile-vertical-spacing);
 }
 
 @media screen and (min-width: 750px) {
   .grid {
-    -moz-column-gap: var(--grid-desktop-horizontal-spacing);
-         column-gap: var(--grid-desktop-horizontal-spacing);
+    column-gap: var(--grid-desktop-horizontal-spacing);
     row-gap: var(--grid-desktop-vertical-spacing);
   }
 }
@@ -1593,8 +923,7 @@ summary::-webkit-details-marker {
 }
 
 .grid--gapless.grid {
-  -moz-column-gap: 0;
-       column-gap: 0;
+  column-gap: 0;
   row-gap: 0;
 }
 
@@ -1705,7 +1034,9 @@ summary::-webkit-details-marker {
   .scroll-trigger:not(.scroll-trigger--offscreen) .slider--desktop {
     animation: var(--animation-slide-in);
   }
+}
 
+@media screen and (min-width: 990px) {
   .grid--1-col-desktop {
     flex: 0 0 100%;
     max-width: 100%;
@@ -1737,7 +1068,6 @@ summary::-webkit-details-marker {
   }
 
   /* Fix to show some space at the end of our sliders in all browsers */
-
   .grid--peek.slider:after {
     margin-left: calc(-1 * var(--grid-mobile-horizontal-spacing));
   }
@@ -1785,7 +1115,6 @@ summary::-webkit-details-marker {
 }
 
 /* component-media */
-
 .media {
   display: block;
   background-color: rgba(var(--color-foreground), 0.1);
@@ -1809,10 +1138,8 @@ summary::-webkit-details-marker {
 }
 
 .media > img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center center;
-     object-position: center center;
+  object-fit: cover;
+  object-position: center center;
   transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -1856,7 +1183,6 @@ deferred-media {
 }
 
 /* component-button */
-
 /* Button - default */
 
 .button--secondary,
@@ -1882,8 +1208,7 @@ button.shopify-payment-button__button--unbranded,
   --shadow-blur-radius: var(--buttons-shadow-blur-radius);
   --shadow-opacity: var(--buttons-shadow-opacity);
   --shadow-visible: var(--buttons-shadow-visible);
-  --border-offset: var(--buttons-border-offset);
-  /* reduce radius edge artifacts */
+  --border-offset: var(--buttons-border-offset); /* reduce radius edge artifacts */
   --border-opacity: calc(1 - var(--buttons-border-opacity));
   border-radius: var(--buttons-radius-outset);
   position: relative;
@@ -1921,8 +1246,7 @@ button.shopify-payment-button__button--unbranded {
   color: rgb(var(--color-button-text));
   transition: box-shadow var(--duration-short) ease;
   -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
+  appearance: none;
   background-color: rgba(var(--color-button), var(--alpha-button-background));
 }
 
@@ -1994,10 +1318,6 @@ button.shopify-payment-button__button--unbranded {
   box-shadow: inherit;
 }
 
-.button::-moz-selection, .shopify-challenge__button::-moz-selection, .customer button::-moz-selection {
-  background-color: rgba(var(--color-button-text), 0.3);
-}
-
 .button::selection,
 .shopify-challenge__button::selection,
 .customer button::selection {
@@ -2064,7 +1384,6 @@ button.shopify-payment-button__button--unbranded {
 }
 
 .button.loading > .loading-overlay__spinner .spinner {
-  width: -moz-fit-content;
   width: fit-content;
 }
 
@@ -2080,7 +1399,6 @@ button.shopify-payment-button__button--unbranded {
 }
 
 .share-button details {
-  width: -moz-fit-content;
   width: fit-content;
 }
 
@@ -2124,7 +1442,6 @@ details[open] > .share-button__fallback {
   left: 0.1rem;
   z-index: 3;
   width: 100%;
-  min-width: -moz-max-content;
   min-width: max-content;
   border-radius: var(--inputs-radius);
   border: 0;
@@ -2260,14 +1577,12 @@ details[open] > .share-button__fallback {
 }
 
 /* component-form */
-
 .field__input,
 .select__select,
 .customer .field input,
 .customer select {
   -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
+  appearance: none;
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-foreground));
   font-size: 1.6rem;
@@ -2458,10 +1773,6 @@ details[open] > .share-button__fallback {
   display: none;
 }
 
-.field__input::-moz-placeholder, .customer .field input::-moz-placeholder {
-  opacity: 0;
-}
-
 .field__input::placeholder,
 .customer .field input::placeholder {
   opacity: 0;
@@ -2573,7 +1884,6 @@ input[type='checkbox'] {
 }
 
 /* component-quantity */
-
 .quantity {
   color: rgba(var(--color-foreground));
   position: relative;
@@ -2625,8 +1935,7 @@ input[type='checkbox'] {
   width: 100%;
   flex-grow: 1;
   -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
+  appearance: none;
 }
 
 .quantity__button {
@@ -2718,7 +2027,6 @@ product-info .loading-overlay:not(.hidden) ~ *,
 }
 
 /* component-modal */
-
 .modal__toggle {
   list-style-type: none;
 }
@@ -2788,7 +2096,6 @@ product-info .loading-overlay:not(.hidden) ~ *,
 }
 
 /* component-cart-count-bubble */
-
 .cart-count-bubble:empty {
   display: none;
 }
@@ -2810,7 +2117,6 @@ product-info .loading-overlay:not(.hidden) ~ *,
 }
 
 /* utility-bar */
-
 .utility-bar {
   height: 100%;
 }
@@ -2861,7 +2167,6 @@ product-info .loading-overlay:not(.hidden) ~ *,
 
   .announcement-bar.announcement-bar--one-announcement,
   .announcement-bar--one-announcement .announcement-bar__link {
-    width: -moz-fit-content;
     width: fit-content;
     margin: auto;
   }
@@ -2882,6 +2187,10 @@ product-info .loading-overlay:not(.hidden) ~ *,
 .announcement-bar .slider--everywhere {
   margin-bottom: 0;
   scroll-behavior: auto;
+}
+
+.utility-bar__grid .announcement-bar-slider {
+  width: 100%;
 }
 
 .utility-bar__grid .announcement-bar-slider {
@@ -3010,7 +2319,6 @@ product-info .loading-overlay:not(.hidden) ~ *,
     opacity: 0;
     transform: translateX(var(--announcement-translate-from));
   }
-
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -3022,7 +2330,6 @@ product-info .loading-overlay:not(.hidden) ~ *,
     opacity: 1;
     transform: translateX(0);
   }
-
   100% {
     opacity: 0;
     transform: translateX(var(--announcement-translate-to));
@@ -3030,7 +2337,6 @@ product-info .loading-overlay:not(.hidden) ~ *,
 }
 
 /* section-header */
-
 .section-header.shopify-section-group-header-group {
   z-index: 3;
 }
@@ -3061,7 +2367,6 @@ product-info .loading-overlay:not(.hidden) ~ *,
 }
 
 /* Main Header Layout */
-
 .header-wrapper {
   display: block;
   position: relative;
@@ -3102,22 +2407,19 @@ product-info .loading-overlay:not(.hidden) ~ *,
   .header--middle-left.drawer-menu {
     grid-template-areas: 'navigation heading icons';
     grid-template-columns: auto 1fr auto;
-    -moz-column-gap: 1rem;
-         column-gap: 1rem;
+    column-gap: 1rem;
   }
 
   .header--middle-left {
     grid-template-areas: 'heading navigation icons';
     grid-template-columns: auto auto 1fr;
-    -moz-column-gap: 2rem;
-         column-gap: 2rem;
+    column-gap: 2rem;
   }
 
   .header--middle-center:not(.drawer-menu) {
     grid-template-areas: 'navigation heading icons';
     grid-template-columns: 1fr auto 1fr;
-    -moz-column-gap: 2rem;
-         column-gap: 2rem;
+    column-gap: 2rem;
   }
 
   .header--middle-center a.header__heading-link {
@@ -3228,7 +2530,6 @@ product-info .loading-overlay:not(.hidden) ~ *,
 }
 
 /* Header icons */
-
 .header__icons {
   display: flex;
   grid-area: icons;
@@ -3297,7 +2598,6 @@ product-info .loading-overlay:not(.hidden) ~ *,
 }
 
 /* Search */
-
 menu-drawer + .header__search {
   display: none;
 }
@@ -3429,7 +2729,6 @@ details[open] .modal-overlay::after {
 }
 
 /* Header menu drawer */
-
 .header__icon--menu .icon {
   display: block;
   position: absolute;
@@ -3474,7 +2773,6 @@ details[open] > .header__submenu {
 }
 
 /* Header menu */
-
 .header__inline-menu {
   margin-left: -1.2rem;
   grid-area: navigation;
@@ -3519,9 +2817,7 @@ details[open] > .header__submenu {
 }
 
 .header__menu-item span {
-  transition: -webkit-text-decoration var(--duration-short) ease;
   transition: text-decoration var(--duration-short) ease;
-  transition: text-decoration var(--duration-short) ease, -webkit-text-decoration var(--duration-short) ease;
 }
 
 .header__menu-item:hover span {
@@ -3711,7 +3007,6 @@ details-disclosure > details {
     border-right: none;
     border-radius: 0;
   }
-
   .content-container--full-width-mobile:after {
     display: none;
   }
@@ -3767,7 +3062,6 @@ details-disclosure > details {
 }
 
 /* check for flexbox gap in older Safari versions */
-
 @supports not (inset: 10px) {
   .grid {
     margin-left: calc(-1 * var(--grid-mobile-horizontal-spacing));
@@ -3816,7 +3110,6 @@ details-disclosure > details {
 }
 
 /* outline and border styling for Windows High Contrast Mode */
-
 @media (forced-colors: active) {
   .button,
   .shopify-challenge__button,
@@ -3925,50 +3218,40 @@ details-disclosure > details {
 }
 
 .shape--arch {
-  -webkit-clip-path: url('#Shape-Arch');
-          clip-path: url('#Shape-Arch');
+  clip-path: url('#Shape-Arch');
 }
 
 .shape--blob {
-  -webkit-clip-path: polygon(var(--shape--blob-1));
-          clip-path: polygon(var(--shape--blob-1));
+  clip-path: polygon(var(--shape--blob-1));
 }
 
 .shape--chevronleft {
-  -webkit-clip-path: polygon(100% 0%, 85% 50%, 100% 100%, 15% 100%, 0% 50%, 15% 0%);
-          clip-path: polygon(100% 0%, 85% 50%, 100% 100%, 15% 100%, 0% 50%, 15% 0%);
+  clip-path: polygon(100% 0%, 85% 50%, 100% 100%, 15% 100%, 0% 50%, 15% 0%);
 }
 
 .shape--chevronright {
-  -webkit-clip-path: polygon(85% 0%, 100% 50%, 85% 100%, 0% 100%, 15% 50%, 0% 0%);
-          clip-path: polygon(85% 0%, 100% 50%, 85% 100%, 0% 100%, 15% 50%, 0% 0%);
+  clip-path: polygon(85% 0%, 100% 50%, 85% 100%, 0% 100%, 15% 50%, 0% 0%);
 }
 
 .shape--circle {
-  -webkit-clip-path: circle(closest-side);
-          clip-path: circle(closest-side);
+  clip-path: circle(closest-side);
 }
 
 .shape--diamond {
-  -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-          clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 }
 
 .shape--parallelogram {
-  -webkit-clip-path: polygon(15% 0, 100% 0%, 85% 100%, 0% 100%);
-          clip-path: polygon(15% 0, 100% 0%, 85% 100%, 0% 100%);
+  clip-path: polygon(15% 0, 100% 0%, 85% 100%, 0% 100%);
 }
 
 .shape--round {
-  -webkit-clip-path: ellipse(45% 45% at 50% 50%);
-          clip-path: ellipse(45% 45% at 50% 50%);
+  clip-path: ellipse(45% 45% at 50% 50%);
 }
 
 /* Fixed background */
-
 .animate--fixed {
-  -webkit-clip-path: inset(0);
-          clip-path: inset(0);
+  clip-path: inset(0);
 }
 
 .animate--fixed > img:not(.zoom):not(.deferred-media__poster-button),
@@ -3978,7 +3261,6 @@ details-disclosure > details {
 }
 
 /* Zoom in image on scroll */
-
 .animate--zoom-in {
   --zoom-in-ratio: 1;
 }
@@ -4001,7 +3283,6 @@ details-disclosure > details {
     0% {
       transform: rotate(0deg) translateX(1em) rotate(0deg) scale(1.2);
     }
-
     100% {
       transform: rotate(360deg) translateX(1em) rotate(-360deg) scale(1.2);
     }
@@ -4044,7 +3325,6 @@ details-disclosure > details {
       transform: translateY(2rem);
       opacity: 0.01;
     }
-
     to {
       transform: translateY(0);
       opacity: 1;
@@ -4055,7 +3335,6 @@ details-disclosure > details {
     from {
       opacity: 0.01;
     }
-
     to {
       opacity: 1;
     }
@@ -4083,22 +3362,19 @@ details-disclosure > details {
   .animate--hover-3d-lift .customer button:not([disabled]):hover,
   .animate--hover-3d-lift .shopify-payment-button__button:hover,
   .animate--hover-3d-lift .deferred-media:hover .deferred-media__poster-button {
-    transition: transform var(--duration-extended) ease, box-shadow var(--duration-long) ease;
-    /* Slow the card transition speed while hover is active. */
+    transition: transform var(--duration-extended) ease, box-shadow var(--duration-long) ease; /* Slow the card transition speed while hover is active. */
     transform: rotate(1deg);
     box-shadow: -1rem -1rem 1rem -1rem rgba(0, 0, 0, 0.05), 1rem 1rem 1rem -1rem rgba(0, 0, 0, 0.05),
       0 0 0.5rem 0 rgba(255, 255, 255, 0), 0 2rem 3.5rem -2rem rgba(0, 0, 0, 0.5);
   }
 
   .animate--hover-3d-lift .deferred-media:hover .deferred-media__poster-button {
-    transform: translate(-50%, -50%) scale(1.05);
-    /* Apply a specialized transform to the video play button. */
+    transform: translate(-50%, -50%) scale(1.05); /* Apply a specialized transform to the video play button. */
   }
 
   .animate--hover-3d-lift .collage__item .card-wrapper:hover .card--card,
   .animate--hover-3d-lift .collage__item .card-wrapper:hover .card--standard .card__inner {
-    transform: rotate(0.5deg);
-    /* Less intense rotation for collage items. */
+    transform: rotate(0.5deg); /* Less intense rotation for collage items. */
   }
 
   .animate--hover-3d-lift .product-grid .grid__item:hover,
@@ -4106,13 +3382,11 @@ details-disclosure > details {
   .animate--hover-3d-lift .collage__item:hover,
   .animate--hover-3d-lift .blog-articles .article:hover,
   .animate--hover-3d-lift .complementary-slide li:hover {
-    z-index: 2;
-    /* Make sure the hovered card is the topmost card. */
+    z-index: 2; /* Make sure the hovered card is the topmost card. */
   }
 
   .animate--hover-3d-lift .product-grid {
-    isolation: isolate;
-    /* Ensure z-index changes here don't negatively effect other UI stacking. */
+    isolation: isolate; /* Ensure z-index changes here don't negatively effect other UI stacking. */
   }
 
   .animate--hover-3d-lift .card-wrapper .card--shape.card--standard:not(.card--text) .card__inner {
@@ -4121,8 +3395,7 @@ details-disclosure > details {
   }
 
   .animate--hover-3d-lift .card-wrapper:hover .card--shape.card--standard:not(.card--text) .card__inner {
-    transition: transform calc(2 * var(--duration-extended)) ease, filter var(--duration-long) ease;
-    /* Slow the card transition speed while hover is active. */
+    transition: transform calc(2 * var(--duration-extended)) ease, filter var(--duration-long) ease; /* Slow the card transition speed while hover is active. */
     filter: drop-shadow(0rem 2rem 2rem rgba(0, 0, 0, 0.15)) drop-shadow(0rem 1rem 1rem rgba(0, 0, 0, 0.15));
   }
 
@@ -4228,15 +3501,13 @@ details-disclosure > details {
   .animate--hover-vertical-lift .button:not([disabled]):hover:after,
   .animate--hover-vertical-lift .customer button:not([disabled]):hover:after,
   .animate--hover-vertical-lift .shopify-payment-button__button:not([disabled]):hover:after {
-    --border-offset: 0.3px;
-    /* Default is 1.3px as defined above in this file. This removes 1px to prevent the border from growing on buttons when this effect is on.  */
+    --border-offset: 0.3px; /* Default is 1.3px as defined above in this file. This removes 1px to prevent the border from growing on buttons when this effect is on.  */
     box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
         rgba(var(--color-button-text), var(--border-opacity)),
       0 0 0 var(--buttons-border-width) rgba(var(--color-button), var(--alpha-button-background));
   }
 
   .animate--hover-vertical-lift .button:not([disabled]).button--secondary:hover:after {
-    --border-offset: 0px;
-    /* Prevent the border from growing on buttons when this effect is on. */
+    --border-offset: 0px; /* Prevent the border from growing on buttons when this effect is on. */
   }
 }

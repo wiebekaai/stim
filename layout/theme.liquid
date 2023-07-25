@@ -28,6 +28,11 @@
 
     {% render 'meta-tags' %}
 
+    {%- liquid
+      render 'vite-tag' with 'style.css', preload_stylesheet: true
+      render 'vite-tag' with 'main.ts'
+    -%}
+
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
