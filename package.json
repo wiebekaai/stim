@@ -5,12 +5,15 @@
     "dev": "run-p -sr dev:shopify dev:vite",
     "dev:shopify": "shopify theme dev --store $npm_package_config_store",
     "dev:vite": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "preview": "npm run build && shopify theme push -u --store $npm_package_config_store"
   },
   "config": {
     "store": "wiebe-checkout"
   },
-  "homepage": "https://$npm_package_config_store.myshopify.com",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "devDependencies": {
     "@shopify/prettier-plugin-liquid": "^1.2.2",
     "autoprefixer": "^10.4.14",
