@@ -1,0 +1,12 @@
+{
+  "name": "dawn-starter",
+  "type": "module",
+  "scripts": {
+    "start": "shopify theme dev --store $npm_package_config_store",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "config": {
+    "store": "wiebe-checkout"
+  },
+  "homepage": "https://$npm_package_config_store.myshopify.com"
+}
