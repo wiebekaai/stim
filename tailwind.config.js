@@ -9,6 +9,8 @@ export default {
       /**
        * Reusable components, avoid premature abstraction
        * https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+       *
+       * More extensive components can be defined in .css files with @apply
        */
       addComponents({
         // '.button': { '@apply bg-black px-4 py-2 text-white': {} },
