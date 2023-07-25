@@ -38,3 +38,4 @@ npm run preview -- --theme=[branch_name]
 ## Considerations
 
 - For the best developer experience, we use [Shopify Vite Plugin](https://github.com/barrel/shopify-vite/tree/main/packages/vite-plugin-shopify) to bundle assets during development. If maintenance of this plugin stops, we can discard the generated snippet it uses and simply use Vite to bundle assets.
+- All starter components are written in Typescript, providing intellisense auto-completion and error-catching before runtime. If JavaScript is preferred for your project, the starter supports it as well.
