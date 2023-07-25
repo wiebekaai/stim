@@ -11,7 +11,7 @@ export default {
        * https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
        */
       addComponents({
-        '.example': { '@apply bg-black': {} },
+        // '.button': { '@apply bg-black px-4 py-2 text-white': {} },
       }),
     ({ addVariant, e }) =>
       /**
