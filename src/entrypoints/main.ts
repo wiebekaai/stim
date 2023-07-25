@@ -76,9 +76,9 @@ const importComponents = async (node: HTMLElement) =>
       }
 
       /**
-       * Example: <my-component data-component-idle>
+       * Default strategy, bypass example: <my-component data-component-immediate>
        */
-      if (currentNode.hasAttribute('data-component-idle')) {
+      if (!currentNode.hasAttribute('data-component-immediate')) {
         await new Promise(function (resolve) {
           if ('requestIdleCallback' in window) {
             window.requestIdleCallback(resolve);
