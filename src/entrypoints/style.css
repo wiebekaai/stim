@@ -2,41 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+.visually-hidden {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  word-wrap: normal !important;
+}
+
 @layer components {
   /** Component for user-configured richtext fields from the theme settings or metafields */
   /** Use em values to allow for relative sizing (example: class="richtext text-4xl") */
-  .metafield-rich_text_field {
-    @apply richtext;
-  }
+  .richtext .metafield-rich_text_field {
+    > * {
+      @apply mb-[1em] last:mb-0;
+    }
 
-  .richtext > * {
-    @apply mb-[1em] last:mb-0;
-  }
+    strong {
+      @apply font-bold;
+    }
 
-  .richtext strong {
-    @apply font-bold;
-  }
+    em {
+      @apply italic;
+    }
 
-  .richtext em {
-    @apply italic;
-  }
+    h1,
+    h2,
+    h3,
+    h4 {
+      @apply font-bold;
+    }
 
-  .richtext h1,
-  .richtext h2,
-  .richtext h3,
-  .richtext h4 {
-    @apply font-bold;
-  }
+    ul {
+      @apply list-inside list-disc;
+    }
 
-  .richtext ul {
-    @apply list-inside list-disc;
-  }
+    li {
+      @apply mb-[0.5em] pl-[1em] last:mb-0;
+    }
 
-  .richtext li {
-    @apply mb-[0.5em] pl-[1em] last:mb-0;
-  }
-
-  .richtext a {
-    @apply underline;
+    a {
+      @apply underline;
+    }
   }
 }

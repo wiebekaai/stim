@@ -6,7 +6,8 @@
     "dev:shopify": "shopify theme dev --store $npm_package_config_store",
     "dev:vite": "vite",
     "build": "vite build",
-    "preview": "npm run build && shopify theme push -u --store $npm_package_config_store"
+    "preview": "npm run build && shopify theme push -u --store $npm_package_config_store",
+    "lint": "prettier --write ."
   },
   "config": {
     "store": "wiebe-checkout"
