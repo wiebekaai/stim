@@ -5,6 +5,9 @@ export default {
   build: {
     emptyOutDir: false,
   },
+  esbuild: {
+    keepNames: true,
+  },
   plugins: [
     shopify({
       sourceCodeDir: 'src/',

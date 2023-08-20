@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Default",
   "compilerOptions": {
-    "target": "es2020",
+    "target": "ES2020",
     "module": "esnext",
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -13,7 +13,8 @@
     "skipDefaultLibCheck": true,
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "experimentalDecorators": true
   },
   "include": ["."],
   "exclude": ["assets", "node_modules"]

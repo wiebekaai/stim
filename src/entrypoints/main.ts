@@ -4,7 +4,10 @@ import traverseDOM from '../lib/traverse-dom';
 import observeAddedElementNodes from '../lib/observe-added-element-nodes';
 
 const env = import.meta.env.MODE || 'production';
-const componentImportFunctions = import.meta.glob(['../components/*.ts', '../components/*.js']);
+
+const componentImportFunctions = import.meta.glob(['../components/*.ts', '../components/*.js'], {
+  import: 'default',
+});
 
 /**
  * Dynamically import components based on their tag.
@@ -88,13 +91,7 @@ const importComponents = async (node: HTMLElement) =>
         });
       }
 
-      importComponent();
-
-      if (env === 'development') {
-        console.groupCollapsed(`🏝️ ${tagName}`);
-        console.log(currentNode);
-        console.groupEnd();
-      }
+      await importComponent();
     }
   });
 
