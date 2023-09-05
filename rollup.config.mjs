@@ -6,7 +6,6 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
 import strip from '@rollup/plugin-strip';
 import postcss from 'rollup-plugin-postcss';
-import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -42,7 +41,6 @@ export default {
     clearScreen: false,
   },
   plugins: [
-    commonjs(),
     postcss({
       extract: true,
     }),
