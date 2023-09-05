@@ -70,7 +70,5 @@ const importComponents = async (node: HTMLElement) =>
     }
   });
 
-window.addEventListener('DOMContentLoaded', (event) => {
-  importComponents(document.body);
-  observeAddedElementNodes(importComponents);
-});
+importComponents(document.body);
+observeAddedElementNodes(importComponents);

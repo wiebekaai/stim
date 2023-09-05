@@ -1,5 +1,18 @@
-{%- assign asset_suffix = '.dev' -%}
+{%- liquid
+  # Serve development src files during development
 
+  capture asset_suffix
+    # theme-check-disable
+    render 'src.dev'
+    # theme-check-enable
+  endcapture
+
+  assign asset_suffix = asset_suffix | strip
+
+  if asset_suffix != '.dev'
+    assign asset_suffix = ''
+  endif
+-%}
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>

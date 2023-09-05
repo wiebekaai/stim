@@ -1,20 +1,21 @@
-/.vscode
-/.git
+.vscode
+.git
+.github
 
-/node_modules
+node_modules
+
 package.json
 package-lock.json
-/*.md
 
-/src
+*.md
 
-vite.config.ts
+src
+rollup.config.mjs
+postcss.config.cjs
 tailwind.config.js
 tsconfig.json
-.eslintrc.cjs
-.prettierrc.cjs
+.prettierrc
 .shopifyignore
 .theme-check.yml
-
 .prettierignore
 .gitignore

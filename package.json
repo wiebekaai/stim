@@ -2,12 +2,10 @@
   "name": "dawn-starter",
   "type": "module",
   "scripts": {
-    "dev": "pnpm serve:production && run-p -sr dev:*",
-    "dev:shopify": "shopify theme dev --store wiebe-checkout",
-    "dev:watch": "rollup -c -w",
-    "build": "pnpm run serve:production && rollup -c --environment NODE_ENV:production && pnpm serve:production",
-    "serve:development": "pnpm replace-in-files --regex=\"\\{%- assign asset_suffix = '.*' -%\\}\" --replacement=\"{%- assign asset_suffix = '.dev' -%}\" layout/theme.liquid",
-    "serve:production": "pnpm replace-in-files --regex=\"\\{%- assign asset_suffix = '.*' -%\\}\" --replacement=\"{%- assign asset_suffix = '' -%}\" layout/theme.liquid"
+    "dev": "run-p -sr build:watch start",
+    "start": "shopify theme dev --store wiebe-checkout --ignore=src/",
+    "build:watch": "echo .dev > snippets/src.dev.liquid && rollup -c -w",
+    "build": "rollup -c --environment NODE_ENV:production && rm -f snippets/src.dev.liquid"
   },
   "engines": {
     "node": ">=18.0.0"

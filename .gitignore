@@ -10,3 +10,4 @@ Thumbs.db
 node_modules
 /snippets/vite-tag.liquid
 assets/*.dev.*
+snippets/src.dev.liquid
