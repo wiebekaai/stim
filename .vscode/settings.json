@@ -23,5 +23,7 @@
   },
   "emmet.includeLanguages": {
     "liquid": "html"
-  }
+  },
+  "typescript.preferences.importModuleSpecifierEnding": "minimal",
+  "typescript.preferences.importModuleSpecifier": "non-relative"
 }

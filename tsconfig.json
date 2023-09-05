@@ -13,9 +13,10 @@
     "skipDefaultLibCheck": true,
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
-    "types": ["vite/client"],
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["."],
-  "exclude": ["assets", "node_modules"]
+  "include": ["src"]
 }

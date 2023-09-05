@@ -4,7 +4,7 @@ const observeAddedElementNodes = (callback: (node: HTMLElement) => unknown) => {
       const { addedNodes } = mutations[i];
       for (let j = 0; j < addedNodes.length; j++) {
         const node = addedNodes[j];
-        if (node.nodeType === Node.ELEMENT_NODE) callback(node as HTMLElement);
+        if (node && node.nodeType === Node.ELEMENT_NODE) callback(node as HTMLElement);
       }
     }
   });
