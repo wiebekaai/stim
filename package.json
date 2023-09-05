@@ -5,7 +5,7 @@
     "dev": "pnpm run serve:development & run-p -sr dev:shopify dev:watch",
     "dev:shopify": "shopify theme dev --store $npm_package_config_store",
     "dev:watch": "rollup -c -w",
-    "build": "rollup -c --environment NODE_ENV:production && pnpm serve:production",
+    "build": "pnpm run serve:production && rollup -c --environment NODE_ENV:production && pnpm serve:production",
     "serve:development": "pnpm replace-in-files --regex=\"\\{%- assign asset_suffix = '.*' -%\\}\" --replacement=\"{%- assign asset_suffix = '.dev' -%}\" layout/theme.liquid",
     "serve:production": "pnpm replace-in-files --regex=\"\\{%- assign asset_suffix = '.*' -%\\}\" --replacement=\"{%- assign asset_suffix = '' -%}\" layout/theme.liquid",
     "preview": "npm run build && shopify theme push -u --store $npm_package_config_store",

@@ -26,7 +26,7 @@ export default {
   output: {
     dir: 'assets',
     format: 'esm',
-    sourcemap: true,
+    sourcemap: !isProduction,
     ...(isProduction
       ? {
           entryFileNames: '[name].js',
