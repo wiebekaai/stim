@@ -80,4 +80,4 @@ const registerControllers = async (node: HTMLElement) =>
     }
   });
 
-window.addEventListener('DOMContentLoaded', async () => registerControllers(document.body));
+registerControllers(document.body);
