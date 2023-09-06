@@ -10,8 +10,6 @@ const registerControllers = async (node: HTMLElement) =>
 
     const identifier = currentNode.dataset.controller;
 
-    console.log(currentNode, 'haha');
-
     if (identifier) {
       // Example: <my-element data-load-media="(min-width: 64rem)"> / <my-element data-load-media="lg+">
       if (currentNode.hasAttribute('data-load-media')) {
@@ -65,8 +63,6 @@ const registerControllers = async (node: HTMLElement) =>
         });
       }
 
-      console.log('register', identifier);
-
       if (!registeredComponents.has(identifier)) {
         registeredComponents.add(identifier);
 
@@ -80,4 +76,10 @@ const registerControllers = async (node: HTMLElement) =>
     }
   });
 
-registerControllers(document.body);
+const initialize = async () => registerControllers(document.body);
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initialize);
+} else {
+  initialize();
+}
