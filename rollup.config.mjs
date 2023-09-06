@@ -35,7 +35,7 @@ export default {
   output: {
     dir: 'assets',
     format: 'esm',
-    sourcemap: true,
+    sourcemap: !isProduction,
     entryFileNames: `${assetPrefix}.[name].js`,
     chunkFileNames: `${assetPrefix}.[name].js`,
   },
