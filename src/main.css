@@ -1,3 +1,5 @@
+@import 'styles/richtext.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,41 +14,4 @@
   border: 0;
   clip: rect(0 0 0 0);
   word-wrap: normal !important;
-}
-
-@layer components {
-  /** Component for user-configured richtext fields from the theme settings or metafields */
-  /** Use em values to allow for relative sizing (example: class="richtext text-4xl") */
-  .richtext .metafield-rich_text_field {
-    > * {
-      @apply mb-[1em] last:mb-0;
-    }
-
-    strong {
-      @apply font-bold;
-    }
-
-    em {
-      @apply italic;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-      @apply font-bold;
-    }
-
-    ul {
-      @apply list-inside list-disc;
-    }
-
-    li {
-      @apply mb-[0.5em] pl-[1em] last:mb-0;
-    }
-
-    a {
-      @apply underline;
-    }
-  }
 }

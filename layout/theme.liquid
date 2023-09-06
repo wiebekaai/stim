@@ -73,6 +73,6 @@
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
 
-    <script src="{{ asset_prefix | append: 'main' | append: '.js' | asset_url }}" async type="module"></script>
+    <script src="{{ asset_prefix | append: 'main' | append: '.js' | asset_url }}" defer type="module"></script>
   </body>
 </html>

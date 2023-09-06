@@ -66,6 +66,7 @@ const registerElements = async (node: HTMLElement) =>
         console.log(`Registering ${identifier}`, currentNode);
 
         let element = null;
+        let registered = false;
 
         try {
           element = await import(`./elements/${identifier}.ts`);
@@ -75,7 +76,13 @@ const registerElements = async (node: HTMLElement) =>
           element = await import(`./elements/${identifier}.js`);
         } catch {}
 
+        try {
+          customElements.define(identifier, element.default);
+          registered = true;
+        } catch {}
+
         if (!element) console.warn(`No controller found for ${identifier}`, currentNode);
+        else if (!registered) console.warn(`Failed to register ${identifier}`, currentNode);
       }
     }
   });

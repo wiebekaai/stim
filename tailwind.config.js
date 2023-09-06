@@ -1,7 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./**/*.liquid', './src/**/*.ts', './sections/**/*.liquid'],
-  theme: {},
+  theme: {
+    extend: {
+      /**
+       * Design tokens
+       * https://tailwindcss.com/docs/theme#extending-the-default-theme
+       */
+    },
+  },
   plugins: [
     ({ addComponents }) =>
       /**
@@ -13,11 +20,13 @@ export default {
       addComponents({
         // '.button': { '@apply bg-black px-4 py-2 text-white': {} },
       }),
-    ({ addVariant, e }) =>
+    ({ addVariant }) => {
       /**
        * Custom variants to handle dynamic classes, opt for default variants when possible
-       * https://tailwindcss.com/docs/hover-focus-and-other-states
+       * https://tailwindcss.com/docs/hover-focus-and-other-states#data-attributes
        */
-      addVariant('is-active', '&.is-active'),
+      addVariant('is-active', '&.is-active');
+      addVariant('group-is-active', ':merge(.group).is-active &');
+    },
   ],
 };

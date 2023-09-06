@@ -8,16 +8,13 @@
     "esModuleInterop": true,
     "strict": true,
     "strictNullChecks": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
     "allowJs": true,
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
-    "experimentalDecorators": true,
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "outDir": "assets"
   },
   "include": ["src"]
 }
