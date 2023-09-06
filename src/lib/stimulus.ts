@@ -19,4 +19,8 @@ window.Stimulus.logDebugActivity = function (id, fn, detail) {
     // @ts-ignore
     console.log('[Stimulus] ⏏ Disconnected', id, detail!.element);
   }
+
+  if (detail?.event?.type && typeof document.body['on' + detail?.event?.type.toString()] === 'undefined') {
+    console.log('[Stimulus] 📡 Dispatched', detail.event.type, detail?.event.detail);
+  }
 };

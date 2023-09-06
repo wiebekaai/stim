@@ -1,11 +1,7 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-  connect() {
-    console.log('yauh');
-  }
+  connect() {}
 
-  react() {
-    console.log('react');
-  }
+  react() {}
 }
