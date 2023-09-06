@@ -3,14 +3,14 @@
 
   capture asset_prefix
     # theme-check-disable
-    render 'src.dev'
+    render 'dev.prefix'
     # theme-check-enable
   endcapture
 
   assign asset_prefix = asset_prefix | strip
 
-  if asset_prefix != 'dev.'
-    assign asset_prefix = 'bundle.'
+  if asset_prefix != 'ap.dev.'
+    assign asset_prefix = 'ap.'
   endif
 -%}
 <!doctype html>

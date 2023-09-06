@@ -1,1 +1,0 @@
-import{C as e}from"./bundle.stimulus2.js";class default_1 extends e{priceTargetConnected(){this.priceTarget.innerText="100"}send(){this.dispatch("something",{detail:{price:100}})}}default_1.targets=["price"];export{default_1 as default};

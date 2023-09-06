@@ -4,18 +4,21 @@
 
 node_modules
 
-package.json
-package-lock.json
-
+*.map
+*.toml
 *.md
 
-src
-rollup.config.mjs
-postcss.config.cjs
-tailwind.config.js
-tsconfig.json
-.prettierrc
-.shopifyignore
-.theme-check.yml
-.prettierignore
 .gitignore
+.shopifyignore
+.prettierignore
+.prettierrc
+.theme-check.yml
+tsconfig.json
+package.json
+pnpm-lock.yaml
+postcss.config.cjs
+rollup.config.mjs
+tailwind.config.js
+
+# Only include compiled assets
+/src/

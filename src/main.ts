@@ -1,14 +1,13 @@
 import traverseDOM from '@/lib/traverse-dom';
 
-import './main.css';
-
 const registeredControllers = new Set<string>();
 
-const registerControllers = async (node: HTMLElement) =>
+const registerElements = async (node: HTMLElement) =>
   traverseDOM(node, async (currentNode) => {
-    const identifier = currentNode.dataset.controller;
+    const identifier = currentNode.tagName.toLowerCase();
+    const isCustomElement = identifier.includes('-');
 
-    if (identifier) {
+    if (isCustomElement) {
       // Example: <my-element data-load-media="(min-width: 64rem)"> / <my-element data-load-media="lg+">
       if (currentNode.hasAttribute('data-load-media')) {
         const query = currentNode.getAttribute('data-load-media')!;
@@ -61,22 +60,21 @@ const registerControllers = async (node: HTMLElement) =>
         });
       }
 
-      if (!window.Stimulus) await import('@/lib/stimulus');
-
       if (!registeredControllers.has(identifier)) {
         registeredControllers.add(identifier);
+        console.log(`Registering ${identifier}`, currentNode);
 
         try {
-          const { default: controller } = await import(`./controllers/${identifier}.ts`);
-          window.Stimulus.register(identifier, controller);
+          await import(`./elements/${identifier}.ts`);
         } catch (e) {
+          console.error(e);
           console.warn(`No controller found for ${identifier}`, currentNode);
         }
       }
     }
   });
 
-const initialize = async () => registerControllers(document.body);
+const initialize = async () => registerElements(document.body);
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initialize);
