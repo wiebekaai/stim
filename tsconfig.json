@@ -11,6 +11,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "allowJs": true,
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
     "experimentalDecorators": true,

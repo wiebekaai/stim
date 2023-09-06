@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  '@hotwired/stimulus':
-    specifier: ^3.2.2
-    version: 3.2.2
-
 devDependencies:
   '@github/catalyst':
     specifier: 2.0.0-alpha1
@@ -43,9 +38,6 @@ devDependencies:
   postcss:
     specifier: ^8.4.27
     version: 8.4.29
-  postcss-import-ext-glob:
-    specifier: ^2.1.1
-    version: 2.1.1(postcss@8.4.29)
   prettier:
     specifier: ^3.0.0
     version: 3.0.3
@@ -81,10 +73,6 @@ packages:
   /@github/catalyst@2.0.0-alpha1:
     resolution: {integrity: sha512-WiQSggGzWGo4K2TAhr1NW/6Qag8mWckVqe1y56h6RBA4erjwrDMrtfmUuvY7BDqqTtqDmYhUm20EGcQyc9BuCw==}
     dev: true
-
-  /@hotwired/stimulus@3.2.2:
-    resolution: {integrity: sha512-eGeIqNOQpXoPAIP7tC1+1Yc1yl1xnwYqg+3mzqxyrbE5pg5YFBZcA6YoTiByJB6DKAEsiWtl6tjTJS4IYtbB7A==}
-    dev: false
 
   /@isaacs/cliui@8.0.2:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -888,10 +876,6 @@ packages:
       glob-parent: 5.1.2
       merge2: 1.4.1
       micromatch: 4.0.5
-    dev: true
-
-  /fast-sort@3.4.0:
-    resolution: {integrity: sha512-c/cMBGA5mH3OYjaXedtLIM3hQjv+KuZuiD2QEH5GofNOZeQVDIYIN7Okc2AW1KPhk44g5PTZnXp8t2lOMl8qhQ==}
     dev: true
 
   /fastq@1.15.0:
@@ -1719,17 +1703,6 @@ packages:
       postcss: ^8.2.15
     dependencies:
       postcss: 8.4.29
-    dev: true
-
-  /postcss-import-ext-glob@2.1.1(postcss@8.4.29):
-    resolution: {integrity: sha512-qd4ELOx2G0hyjgtmLnf/fSVJXXPhkcxcxhLT1y1mAnk53JYbMLoGg+AFtnJowOSvnv4CvjPAzpLpAcfWeofP5g==}
-    peerDependencies:
-      postcss: ^8.2.0
-    dependencies:
-      fast-glob: 3.3.1
-      fast-sort: 3.4.0
-      postcss: 8.4.29
-      postcss-value-parser: 4.2.0
     dev: true
 
   /postcss-import@15.1.0(postcss@8.4.29):

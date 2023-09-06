@@ -75,7 +75,10 @@ export default {
         include: 'src/**',
       }),
     typescript(),
-    isProduction && terser(),
+    isProduction &&
+      terser({
+        keep_classnames: true,
+      }),
     isProduction &&
       del({
         targets: assetPrefixFile,

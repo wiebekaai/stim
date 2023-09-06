@@ -1,6 +1,6 @@
 import traverseDOM from '@/lib/traverse-dom';
 
-const registeredControllers = new Set<string>();
+const registeringOrRegisteredElements = new Set<string>();
 
 const registerElements = async (node: HTMLElement) =>
   traverseDOM(node, async (currentNode) => {
@@ -60,24 +60,24 @@ const registerElements = async (node: HTMLElement) =>
         });
       }
 
-      if (!registeredControllers.has(identifier)) {
-        registeredControllers.add(identifier);
+      if (!registeringOrRegisteredElements.has(identifier)) {
+        registeringOrRegisteredElements.add(identifier);
+
         console.log(`Registering ${identifier}`, currentNode);
 
+        let element = null;
+
         try {
-          await import(`./elements/${identifier}.ts`);
-        } catch (e) {
-          console.error(e);
-          console.warn(`No controller found for ${identifier}`, currentNode);
-        }
+          element = await import(`./elements/${identifier}.ts`);
+        } catch {}
+
+        try {
+          element = await import(`./elements/${identifier}.js`);
+        } catch {}
+
+        if (!element) console.warn(`No controller found for ${identifier}`, currentNode);
       }
     }
   });
 
-const initialize = async () => registerElements(document.body);
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initialize);
-} else {
-  initialize();
-}
+registerElements(document.body);
