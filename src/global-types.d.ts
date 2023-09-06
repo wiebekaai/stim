@@ -1,3 +1,7 @@
-interface HTMLElement {
-  connectedCallback?(): void;
+import type { Application } from '@hotwired/stimulus';
+
+declare global {
+  interface Window {
+    Stimulus: Application;
+  }
 }

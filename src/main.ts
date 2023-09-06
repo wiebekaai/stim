@@ -1,14 +1,18 @@
 import traverseDOM from '@/lib/traverse-dom';
-import observeAddedElementNodes from '@/lib/observe-added-element-nodes';
 
 import './main.css';
 
-const importComponents = async (node: HTMLElement) =>
-  traverseDOM(node, async (currentNode) => {
-    const tagName = currentNode.tagName.toLowerCase();
-    const isCustomElement = tagName.includes('-');
+const registeredComponents = new Set<string>();
 
-    if (isCustomElement) {
+const registerControllers = async (node: HTMLElement) =>
+  traverseDOM(node, async (currentNode) => {
+    if (!window.Stimulus) await import('@/lib/stimulus');
+
+    const identifier = currentNode.dataset.controller;
+
+    console.log(currentNode, 'haha');
+
+    if (identifier) {
       // Example: <my-element data-load-media="(min-width: 64rem)"> / <my-element data-load-media="lg+">
       if (currentNode.hasAttribute('data-load-media')) {
         const query = currentNode.getAttribute('data-load-media')!;
@@ -61,14 +65,19 @@ const importComponents = async (node: HTMLElement) =>
         });
       }
 
-      try {
-        await import(`./elements/${tagName}.ts`);
-        console.log(`🏝️ ${tagName}`, currentNode);
-      } catch (e) {
-        console.warn(`No element found for <${tagName}>! Did you forget to add it to src/elements?`);
+      console.log('register', identifier);
+
+      if (!registeredComponents.has(identifier)) {
+        registeredComponents.add(identifier);
+
+        try {
+          const { default: controller } = await import(`./controllers/${identifier}.ts`);
+          window.Stimulus.register(identifier, controller);
+        } catch (e) {
+          console.warn(`No controller found for ${identifier}`, currentNode);
+        }
       }
     }
   });
 
-importComponents(document.body);
-observeAddedElementNodes(importComponents);
+window.addEventListener('DOMContentLoaded', async () => registerControllers(document.body));

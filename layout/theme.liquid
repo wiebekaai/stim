@@ -1,16 +1,16 @@
 {%- liquid
   # Serve development src files during development
 
-  capture asset_suffix
+  capture asset_prefix
     # theme-check-disable
     render 'src.dev'
     # theme-check-enable
   endcapture
 
-  assign asset_suffix = asset_suffix | strip
+  assign asset_prefix = asset_prefix | strip
 
-  if asset_suffix != '.dev'
-    assign asset_suffix = ''
+  if asset_prefix != 'dev.'
+    assign asset_prefix = 'bundle.'
   endif
 -%}
 <!doctype html>
@@ -39,7 +39,7 @@
 
     {% render 'meta-tags' %}
 
-    {{- 'main' | append: asset_suffix | append: '.css' | asset_url | stylesheet_tag -}}
+    {{- asset_prefix | append: 'main' | append: '.css' | asset_url | stylesheet_tag -}}
 
     {{ content_for_header }}
 
@@ -71,6 +71,6 @@
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
 
-    <script src="{{ 'main' | append: asset_suffix | append: '.js' | asset_url }}" async defer></script>
+    <script src="{{ asset_prefix | append: 'main' | append: '.js' | asset_url }}" async defer></script>
   </body>
 </html>

@@ -7,6 +7,7 @@ import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
 import strip from '@rollup/plugin-strip';
 import postcss from 'rollup-plugin-postcss';
 import terser from '@rollup/plugin-terser';
+import del from 'rollup-plugin-delete';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -28,12 +29,12 @@ export default {
     sourcemap: !isProduction,
     ...(isProduction
       ? {
-          entryFileNames: '[name].js',
-          chunkFileNames: '[name].js',
+          entryFileNames: 'bundle.[name].js',
+          chunkFileNames: 'bundle.[name].js',
         }
       : {
-          entryFileNames: '[name].dev.js',
-          chunkFileNames: '[name].dev.js',
+          entryFileNames: 'dev.[name].js',
+          chunkFileNames: 'dev.[name].js',
         }),
   },
   watch: {
@@ -41,6 +42,10 @@ export default {
     clearScreen: false,
   },
   plugins: [
+    del({
+      runOnce: true,
+      targets: isProduction ? 'assets/{bundle,dev}.*.{js,css,js.map}' : 'assets/dev.*.{js,css,js.map}',
+    }),
     postcss({
       extract: true,
     }),

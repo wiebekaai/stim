@@ -1,53 +1,7 @@
-<button
-  type="button"
-  onclick="getElementById('cart-drawer').open()"
->
-  Cart
-</button>
+<div data-controller="cart-drawer">
+  <div data-cart-drawer-target="price" data-action="click->cart-drawer#send">12.00</div>
+</div>
 
-<broken-element> </broken-element>
-
-<cart-drawer> yoo </cart-drawer>
-
-<cart-drawer id="cart-drawer">
-  <dialog
-    data-target="cart-drawer.dialog"
-    class="group fixed inset-0 p-0 block w-full h-full overflow-x-hidden bg-transparent pointer-events-none data-[closing]:pointer-events-none open:pointer-events-auto"
-  >
-    <div
-      class="absolute inset-0 w-full h-full cursor-default duration-150 bg-black/30 opacity-0 transition-opacity group-data-[closing]:opacity-0 group-open:opacity-100"
-      aria-hidden
-      data-action="click:cart-drawer#close"
-    ></div>
-    <main
-      role="document"
-      class="absolute bg-white right-0 w-[calc(100%-2rem)] lg:w-[35rem] h-full duration-300 transition-transform translate-x-full group-data-[closing]:translate-x-full group-open:translate-x-0"
-    >
-      <header class="p-4 flex items-center">
-        <h1>Cart</h1>
-        <button type="button" data-action="click:cart-drawer#close" class="ml-auto">x</button>
-      </header>
-      <section class="p-4">
-        <p>Cart contents</p>
-      </section>
-    </main>
-  </dialog>
-</cart-drawer>
-
-{% schema %}
-{
-  "name": "Section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "text",
-      "label": "Text"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Section"
-    }
-  ]
-}
-{% endschema %}
+<form data-controller="product-form" data-load-immediate data-action="cart-drawer:something@window->product-form#react">
+  asd2
+</form>
