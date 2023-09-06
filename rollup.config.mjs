@@ -8,14 +8,18 @@ import strip from '@rollup/plugin-strip';
 import postcss from 'rollup-plugin-postcss';
 import terser from '@rollup/plugin-terser';
 import del from 'rollup-plugin-delete';
+import { writeFileSync } from 'fs';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const assetPrefix = isProduction ? 'ap' : 'ap.dev';
+const assetPrefixFile = 'snippets/ap.dev.prefix.liquid';
 
 const jsEntryPoints = glob.sync('src/!(*.d).{ts,js}');
 const cssEntryPoints = glob.sync('src/*.css');
 
 const fileToName = (file) => path.relative('src', file.slice(0, file.length - path.extname(file).length));
+
+let createdDevPrefix = false;
 
 /** @type {import("rollup").RollupOptions} */
 export default {
@@ -72,5 +76,17 @@ export default {
       }),
     typescript(),
     isProduction && terser(),
+    isProduction &&
+      del({
+        targets: assetPrefixFile,
+      }),
+    !isProduction && {
+      generateBundle() {
+        if (!createdDevPrefix) {
+          writeFileSync(path.resolve(fileURLToPath(new URL('.', import.meta.url)), assetPrefixFile), assetPrefix);
+          createdDevPrefix = true;
+        }
+      },
+    },
   ],
 };

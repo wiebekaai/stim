@@ -4,8 +4,8 @@
   "scripts": {
     "dev": "run-p -sr build:watch start",
     "start": "shopify theme dev --environment development",
-    "build:watch": "echo ap.dev. > snippets/dev.prefix.liquid && rollup -c -w",
-    "build": "rollup -c --environment NODE_ENV:production && rm -f snippets/dev.prefix.liquid"
+    "build:watch": "rollup -c -w",
+    "build": "rollup -c --environment NODE_ENV:production"
   },
   "engines": {
     "node": ">=18.0.0"
