@@ -27,15 +27,8 @@ export default {
     dir: 'assets',
     format: 'esm',
     sourcemap: !isProduction,
-    ...(isProduction
-      ? {
-          entryFileNames: 'bundle.[name].js',
-          chunkFileNames: 'bundle.[name].js',
-        }
-      : {
-          entryFileNames: 'dev.[name].js',
-          chunkFileNames: 'dev.[name].js',
-        }),
+    entryFileNames: isProduction ? 'bundle.[name].js' : 'dev.[name].js',
+    chunkFileNames: isProduction ? 'bundle.[name].js' : 'dev.[name].js',
   },
   watch: {
     include: 'src/**',
@@ -44,7 +37,7 @@ export default {
   plugins: [
     del({
       runOnce: true,
-      targets: isProduction ? 'assets/{bundle,dev}.*.{js,css,js.map}' : 'assets/dev.*.{js,css,js.map}',
+      targets: `assets/${isProduction ? '{bundle,dev}' : 'dev'}.*`,
     }),
     postcss({
       extract: true,

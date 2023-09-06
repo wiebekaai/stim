@@ -1,23 +1,8 @@
+@import-glob './styles/*.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-dialog {
-  display: block;
-  max-width: unset;
-  max-height: unset;
-
-  &:modal {
-    display: block;
-    max-width: unset;
-    max-height: unset;
-    visibility: visible;
-  }
-
-  &::backdrop {
-    display: none;
-  }
-}
 
 .visually-hidden {
   position: absolute !important;

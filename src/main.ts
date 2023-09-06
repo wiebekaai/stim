@@ -2,12 +2,10 @@ import traverseDOM from '@/lib/traverse-dom';
 
 import './main.css';
 
-const registeredComponents = new Set<string>();
+const registeredControllers = new Set<string>();
 
 const registerControllers = async (node: HTMLElement) =>
   traverseDOM(node, async (currentNode) => {
-    if (!window.Stimulus) await import('@/lib/stimulus');
-
     const identifier = currentNode.dataset.controller;
 
     if (identifier) {
@@ -63,8 +61,10 @@ const registerControllers = async (node: HTMLElement) =>
         });
       }
 
-      if (!registeredComponents.has(identifier)) {
-        registeredComponents.add(identifier);
+      if (!window.Stimulus) await import('@/lib/stimulus');
+
+      if (!registeredControllers.has(identifier)) {
+        registeredControllers.add(identifier);
 
         try {
           const { default: controller } = await import(`./controllers/${identifier}.ts`);
