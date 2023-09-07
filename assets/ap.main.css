@@ -485,28 +485,37 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+
 /** Component for user-configured richtext fields from the theme settings or metafields */
+
 /** Use em values to allow for relative sizing (example: class="richtext text-4xl") */
+
 .absolute {
   position: absolute;
 }
+
 .left-0 {
   left: 0px;
 }
+
 .hidden {
   display: none;
 }
+
 .h-full {
   height: 100%;
 }
+
 .italic {
   font-style: italic;
 }
+
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+
 .visually-hidden {
   position: absolute !important;
   overflow: hidden;
