@@ -5,7 +5,7 @@
     "dev": "run-p -sr build:watch start",
     "start": "shopify theme dev --environment development",
     "build": "rollup -c --environment NODE_ENV:production",
-    "build:watch": "rollup -c -w"
+    "build:watch": "rollup -w --c rollup.config.ts --configPlugin typescript"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -21,13 +21,19 @@
     "fast-glob": "^3.3.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.27",
+    "postcss-cli": "^10.1.0",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "rollup": "^3.28.1",
-    "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-watch": "^1.0.2",
+    "rollup-plugin-watch-globs": "^2.0.1",
     "tailwindcss": "^3.3.3",
     "tslib": "^2.6.2",
     "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@rtvision/esbuild-dynamic-import": "^2.0.1",
+    "esbuild": "0.19.2"
   }
 }

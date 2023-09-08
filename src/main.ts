@@ -1,18 +1,10 @@
-const observeAddedElementNodes = (node: HTMLElement, callback: (node: HTMLElement) => unknown) => {
-  const observer = new window.MutationObserver((mutations) => {
-    for (let i = 0; i < mutations.length; i++) {
-      const { addedNodes } = mutations[i];
-      for (let j = 0; j < addedNodes.length; j++) {
-        const node = addedNodes[j];
-        if (node.nodeType === Node.ELEMENT_NODE) callback(node as HTMLElement);
-      }
-    }
-  });
+import observeAddedElementNodes from '@/lib/observe-added-element-nodes';
 
-  observer.observe(node, {
-    childList: true,
-    subtree: true,
-  });
+import './main.css';
+import './sm.css';
+
+const identifiers: Record<string, string> = {
+  'cart-drawer': 'cart-drawer',
 };
 
 const registerElements = async (node: HTMLElement) =>
@@ -20,12 +12,14 @@ const registerElements = async (node: HTMLElement) =>
     .filter((e) => e.tagName.includes('-'))
     .forEach((node) => {
       (async () => {
-        const identifier = node.tagName.toLowerCase();
+        const identifier = identifiers[node.tagName.toLowerCase()];
 
-        // await request idle, with a timeout fallback for browsers that don't support it
-        await (window.requestIdleCallback ? window.requestIdleCallback : (cb: () => unknown) => setTimeout(cb, 100))(
-          () => {},
-        );
+        if (!node.hasAttribute('data-load-eager')) {
+          await new Promise((resolve) => {
+            if ('requestIdleCallback' in window) window.requestIdleCallback(resolve);
+            else setTimeout(resolve, 200);
+          });
+        }
 
         /**
          * Support TypeScript and JavaScript
@@ -35,14 +29,16 @@ const registerElements = async (node: HTMLElement) =>
             (async () => {
               try {
                 return (await import(`./elements/${identifier}.ts`)).default;
-              } catch {
+              } catch (e) {
+                console.log(e);
                 return null;
               }
             })(),
             (async () => {
               try {
                 return (await import(`./elements/${identifier}.js`)).default;
-              } catch {
+              } catch (e) {
+                console.log(e);
                 return null;
               }
             })(),
@@ -50,13 +46,24 @@ const registerElements = async (node: HTMLElement) =>
         ).filter(Boolean)[0];
 
         if (element) {
-          if (!customElements.get(identifier)) customElements.define(identifier, element);
+          if (!customElements.get(identifier)) {
+            console.log(`🏝️ ${identifier}`);
+            customElements.define(identifier, element);
+          }
         } else {
           console.error(
-            `Element <${identifier}> not found! Please create it.
+            `%cElement <${identifier}> not found! Please create it.
 
-1. Create \`src/elements/${identifier}.ts\` or \`src/elements/${identifier}.js\`
-2. Add \`export default class extends HTMLElement {}\``,
+%c1. Create \`src/elements/${identifier}.ts\` or \`src/elements/${identifier}.js\`
+2. Add \`export default class extends HTMLElement {}\`
+
+%c🪄 Example
+%cecho "export default class extends HTMLElement {}" > src/elements/${identifier}.ts
+`,
+            'font-weight:bold;',
+            'color:white;',
+            'font-weight:bold;color:white;',
+            'color:white;',
           );
         }
       })();
