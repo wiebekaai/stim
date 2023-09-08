@@ -2,9 +2,6 @@ export default class CartDrawer extends HTMLElement {
   async connectedCallback() {
     // this.innerHTML = 'cartDrawer some change';
 
-    console.log(window.Shopify.routes.root);
-    console.log('drawe23rr!');
-
     const a = await fetch(`${window.Shopify.routes.root}?section_id=section`)
       .then((response) => response.text())
       .then((text) => new DOMParser().parseFromString(text, 'text/html').body.firstChild);

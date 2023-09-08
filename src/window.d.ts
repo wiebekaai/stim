@@ -4,7 +4,6 @@ interface Window {
       root: string;
     };
   };
-  // process.env
   process: {
     env: {
       NODE_ENV: string;

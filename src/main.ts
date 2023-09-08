@@ -32,7 +32,7 @@ const registerElements = async (node: HTMLElement) =>
           if (!customElements.get(tagName)) {
             customElements.define(tagName, element);
             if (process.env.NODE_ENV !== 'production') {
-              console.log(`🏝️ %c<${tagName}>`, 'font-weight:bold;color:white;');
+              console.log(`🏝️ %c<${tagName}>`, 'font-weight:bold;color:white;', node);
             }
           }
         } else {
