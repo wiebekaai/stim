@@ -3,6 +3,7 @@ export default class CartDrawer extends HTMLElement {
     // this.innerHTML = 'cartDrawer some change';
 
     console.log(window.Shopify.routes.root);
+    console.log('drawe23rr!');
 
     const a = await fetch(`${window.Shopify.routes.root}?section_id=section`)
       .then((response) => response.text())

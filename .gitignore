@@ -11,3 +11,4 @@ node_modules
 /snippets/vite-tag.liquid
 assets/ap.dev.*
 snippets/ap.dev.prefix.liquid
+.parcel-cache

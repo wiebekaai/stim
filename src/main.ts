@@ -1,70 +1,52 @@
 import observeAddedElementNodes from '@/lib/observe-added-element-nodes';
 
-import './main.css';
-import './sm.css';
+const elementImportsByFilename = import(
+  /** @ts-ignore */
+  `./elements/*`
+) as unknown as Record<string, () => Promise<{ default: CustomElementConstructor }>>;
 
-const identifiers: Record<string, string> = {
-  'cart-drawer': 'cart-drawer',
-};
+const elementImports = Object.fromEntries(
+  Object.entries(elementImportsByFilename).map(([filepath, element]) => [
+    filepath.split('/').pop()!.replace('.ts', '').replace('.js', ''),
+    async () => (await element()).default,
+  ]),
+);
 
 const registerElements = async (node: HTMLElement) =>
   [node, ...Array.from(node.querySelectorAll('*'))]
-    .filter((e) => e.tagName.includes('-'))
-    .forEach((node) => {
+    .map((e) => [e.tagName.toLowerCase(), e] as const)
+    .filter(([tagName]) => tagName.includes('-'))
+    .filter(([tagName]) => !customElements.get(tagName))
+    .forEach(([tagName, node]) => {
       (async () => {
-        const identifier = identifiers[node.tagName.toLowerCase()];
+        await new Promise((resolve) => {
+          if ('requestIdleCallback' in window) window.requestIdleCallback(resolve);
+          else setTimeout(resolve, 200);
+        });
 
-        if (!node.hasAttribute('data-load-eager')) {
-          await new Promise((resolve) => {
-            if ('requestIdleCallback' in window) window.requestIdleCallback(resolve);
-            else setTimeout(resolve, 200);
-          });
-        }
+        const elementImport = elementImports[tagName];
 
-        /**
-         * Support TypeScript and JavaScript
-         */
-        const element = await (
-          await Promise.all([
-            (async () => {
-              try {
-                return (await import(`./elements/${identifier}.ts`)).default;
-              } catch (e) {
-                console.log(e);
-                return null;
-              }
-            })(),
-            (async () => {
-              try {
-                return (await import(`./elements/${identifier}.js`)).default;
-              } catch (e) {
-                console.log(e);
-                return null;
-              }
-            })(),
-          ])
-        ).filter(Boolean)[0];
+        if (elementImport) {
+          const element = await elementImport();
 
-        if (element) {
-          if (!customElements.get(identifier)) {
-            console.log(`🏝️ ${identifier}`);
-            customElements.define(identifier, element);
+          if (!customElements.get(tagName)) {
+            customElements.define(tagName, element);
+            if (process.env.NODE_ENV !== 'production') {
+              console.log(`🏝️ %c<${tagName}>`, 'font-weight:bold;color:white;');
+            }
           }
         } else {
-          console.error(
-            `%cElement <${identifier}> not found! Please create it.
+          if (process.env.NODE_ENV !== 'production')
+            console.error(
+              `%c🏝️ <${tagName}> not found! Please create \`src/elements/${tagName}.ts\` or \`src/elements/${tagName}.js\` with a Custom Element.
 
-%c1. Create \`src/elements/${identifier}.ts\` or \`src/elements/${identifier}.js\`
-2. Add \`export default class extends HTMLElement {}\`
-
-%c🪄 Example
-%cecho "export default class extends HTMLElement {}" > src/elements/${identifier}.ts
-`,
-            'font-weight:bold;',
-            'color:white;',
-            'font-weight:bold;color:white;',
-            'color:white;',
-          );
+%c✨ Command
+%cecho "export default class extends HTMLElement { connectedCallback() { /** Een goed begin is het halve werk. */ } }" > src/elements/${tagName}.ts
+  `,
+              'font-weight:bold;',
+              'font-weight:bold;color:white;',
+              'color:white;',
+            );
         }
       })();
     });

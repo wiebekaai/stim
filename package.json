@@ -3,14 +3,47 @@
   "type": "module",
   "scripts": {
     "dev": "run-p -sr build:watch start",
-    "start": "shopify theme dev --environment development",
-    "build": "rollup -c --environment NODE_ENV:production",
-    "build:watch": "rollup -w --c rollup.config.ts --configPlugin typescript"
+    "start": "shopify theme dev --environment development --live-reload full-page",
+    "build": "parcel build 'src/*.ts'",
+    "watch": "parcel watch"
   },
-  "engines": {
-    "node": ">=18.0.0"
+  "targets": {
+    "default": {
+      "source": [
+        "./src/*.ts",
+        "./src/*.css"
+      ],
+      "distDir": "./assets",
+      "outputFormat": "esmodule"
+    }
+  },
+  "parcel-namer-rewrite": {
+    "hashing": "never",
+    "profiles": {
+      "production": {
+        "rules": {
+          "(.*)": "ap.$1"
+        }
+      },
+      "development": {
+        "rules": {
+          "(.*)": "ap.dev.$1"
+        }
+      }
+    }
+  },
+  "browserlist": [
+    "last 3 chrome version",
+    "last 3 firefox version",
+    "last 2 safari version"
+  ],
+  "parcel-namer-custom": {
+    ".*$": "ap.[name].[type]"
   },
   "devDependencies": {
+    "@parcel/config-default": "^2.9.3",
+    "@parcel/packager-ts": "2.9.3",
+    "@parcel/resolver-glob": "^2.9.3",
     "@rollup/plugin-dynamic-import-vars": "^2.0.5",
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@rollup/plugin-strip": "^3.0.2",
@@ -19,9 +52,11 @@
     "@shopify/prettier-plugin-liquid": "^1.2.2",
     "autoprefixer": "^10.4.14",
     "fast-glob": "^3.3.1",
+    "import": "^0.0.6",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.27",
     "postcss-cli": "^10.1.0",
+    "postcss-import": "^15.1.0",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "rollup": "^3.28.1",
@@ -33,7 +68,11 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@parcel/plugin": "^2.9.3",
     "@rtvision/esbuild-dynamic-import": "^2.0.1",
-    "esbuild": "0.19.2"
+    "esbuild": "0.19.2",
+    "parcel": "^2.9.3",
+    "parcel-namer-custom": "^0.2.0",
+    "parcel-namer-rewrite": "2.0.0-rc.3"
   }
 }
