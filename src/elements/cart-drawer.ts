@@ -1,21 +1,26 @@
 export default class CartDrawer extends HTMLElement {
-  async connectedCallback() {
-    // this.innerHTML = 'cartDrawer some change';
+  renderContents(a: any) {
+    const s = a.sections['main-product'];
+    const html = new DOMParser().parseFromString(s, 'text/html');
 
-    const a = await fetch(`${window.Shopify.routes.root}?section_id=section`)
-      .then((response) => response.text())
-      .then((text) => new DOMParser().parseFromString(text, 'text/html').body.firstChild);
+    html.querySelectorAll('[data-line-item]').forEach((l) => {
+      const id = l.getAttribute('data-line-item')!;
 
-    const selectorsToReplaceText = ['[data-title]', '[data-description]'];
-    const selectorsToReplaceElements = ['[data-products]'];
+      const lineItem = this.querySelector(`[data-line-item="${id}"]`)!;
 
-    selectorsToReplaceText.forEach((selector) => {
-      const element = document.querySelector(selector);
-      if (element) {
-        this.querySelector(selector)?.replaceWith(element);
-      } else {
-        this.querySelector(selector)?.remove();
-      }
+      const replaceContents = ['[data-title]', '[data-quantity]'];
+
+      replaceContents.forEach((c) => {
+        lineItem.querySelector(c)!.textContent = html.querySelector(c)?.textContent || '';
+      });
     });
+  }
+
+  setLoading() {
+    this.setAttribute('data-loading', '');
+  }
+
+  unsetLoading() {
+    this.removeAttribute('data-loading');
   }
 }

@@ -1,0 +1,45 @@
+<product-form>
+  {%- form 'product', product -%}
+    <select name="id">
+      {% for variant in product.variants %}
+        <option
+          value="{{ variant.id }}"
+          {% if variant == product.selected_or_first_available_variant %}
+            selected="selected"
+          {% endif %}
+        >
+          {{ variant.title }} - {{ variant.price | money }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <input type="submit" value="Add to cart">
+  {%- endform -%}
+</product-form>
+
+---
+
+cart
+<cart-drawer data-cart-drawer class="group/cart-drawer data-[loading]:animate-pulse">
+  <div class="hidden group-data-[loading]/cart-drawer:block w-10 h-10 animate-spin bg-blue-500"></div>
+
+  {% for item in cart.items %}
+    <div data-line-item="{{- item.key -}}">
+      <p>
+        <span data-title>{{ item.title }} </span> (<span data-quantity>{{ item.quantity }})</span>
+      </p>
+    </div>
+  {% endfor %}
+</cart-drawer>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main Product"
+    }
+  ]
+}
+{% endschema %}

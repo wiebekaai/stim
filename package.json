@@ -2,10 +2,10 @@
   "name": "dawn-starter",
   "type": "module",
   "scripts": {
-    "dev": "concurrently --names '📦 Parcel,🏪 Shopify' -c yellow,green -k \"npm:watch\" \"npm:start\"",
+    "dev": "concurrently -n '📦,🏪' -c yellow,green -k \"npm:watch\" \"npm:start\"",
     "start": "shopify theme dev --environment development --live-reload full-page",
     "build": "rimraf -g assets/ap.* snippets/ap.dev.liquid && parcel build $npm_package_config_source",
-    "watch": "echo \"ap.dev.\" > snippets/ap.dev.liquid && rimraf -g assets/ap.dev.* && parcel watch --no-hmr --log-level info $npm_package_config_source"
+    "watch": "echo \"ap.dev.\" > snippets/ap.dev.liquid && rimraf -g assets/ap.dev.* .parcel-cache && parcel watch --no-hmr --log-level info $npm_package_config_source"
   },
   "config": {
     "store": "wiebe-checkout",
@@ -15,7 +15,14 @@
     "default": {
       "distDir": "./assets",
       "outputFormat": "esmodule",
-      "sourceMap": false
+      "sourceMap": false,
+      "engines": {
+        "browsers": [
+          "last 3 chrome version",
+          "last 3 firefox version",
+          "last 2 safari version"
+        ]
+      }
     }
   },
   "parcel-namer-rewrite": {
@@ -33,16 +40,12 @@
       }
     }
   },
-  "browserlist": [
-    "last 3 chrome version",
-    "last 3 firefox version",
-    "last 2 safari version"
-  ],
   "devDependencies": {
     "@parcel/config-default": "^2.9.3",
     "@parcel/resolver-glob": "^2.9.3",
     "@shopify/prettier-plugin-liquid": "^1.2.2",
     "autoprefixer": "^10.4.14",
+    "concurrently": "^8.2.1",
     "import": "^0.0.6",
     "parcel": "^2.9.3",
     "parcel-namer-custom": "^0.2.0",
@@ -53,8 +56,5 @@
     "prettier-plugin-tailwindcss": "^0.4.1",
     "rimraf": "^5.0.1",
     "tailwindcss": "^3.3.3"
-  },
-  "dependencies": {
-    "concurrently": "^8.2.1"
   }
 }
