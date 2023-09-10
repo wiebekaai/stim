@@ -2,7 +2,6 @@
   "sections": {
     "section": {
       "type": "section"
-      
     }
   },
   "order": ["section"]

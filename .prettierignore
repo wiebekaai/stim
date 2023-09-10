@@ -1,0 +1,5 @@
+assets/ap.*
+snippets/asset-prefix.liquid
+config/settings_data.json
+*.yml
+*.yaml

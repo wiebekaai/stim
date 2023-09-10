@@ -1,13 +1,4 @@
-{% comment %}
-  - `npm run dev` generates a dev asset prefix for loading local dev assets
-  - production assets remain unchanged and are built by GitHub Actions
-{% endcomment %}
-{% comment %} theme-check-disable {% endcomment %}
-{%- capture asset_prefix -%} {% render 'ap.dev' %} {%- endcapture -%}
-{% assign asset_prefix = asset_prefix | strip %}
-{% if asset_prefix != 'ap.dev.' %} {% assign asset_prefix = 'ap.' %} {% endif %}
-{% comment %} theme-check-enable {% endcomment %}
-
+{%- capture asset_prefix -%}{%- render 'asset-prefix' -%}{%- endcapture -%}
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>

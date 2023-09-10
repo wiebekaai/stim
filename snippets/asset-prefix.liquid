@@ -1,0 +1,25 @@
+{%- comment -%}
+  Capture this snippet and use it to prefix assets.
+
+  Example:
+    {%- capture asset_prefix -%}{%- render 'asset-prefix' -%}{%- endcapture -%}
+    <script src="{{ asset_prefix | append: 'main' | append: '.js' | asset_url }}" defer></script>
+
+    → Loads `ap.dev.main.js` in development and `ap.main.js` in production
+{%- endcomment -%}
+{%- liquid
+  capture asset_prefix
+    # theme-check-disable
+    # Generated on `npm run dev`
+    render 'ap.dev'
+    # theme-check-enable
+  endcapture
+
+  assign asset_prefix = asset_prefix | strip
+
+  if asset_prefix != 'ap.dev.'
+    assign asset_prefix = 'ap.'
+  endif
+
+  echo asset_prefix
+-%}

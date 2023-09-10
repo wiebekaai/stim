@@ -23,6 +23,8 @@ const elementImports = Object.fromEntries(
   ]),
 );
 
+class InvalidElementError extends Error {}
+
 const registerElements = async (node: HTMLElement) =>
   [node, ...Array.from(node.querySelectorAll('*'))]
     .map((node) => [node.tagName.toLowerCase(), node] as const)
@@ -41,28 +43,30 @@ const registerElements = async (node: HTMLElement) =>
 
         const elementImport = elementImports[tagName];
 
-        if (elementImport) {
+        try {
+          if (!elementImport) throw new InvalidElementError();
+
           // Import + define element
           const Element = await elementImport();
 
+          if (typeof Element !== 'function') throw new InvalidElementError();
+
           // Another check, preventing race condition
           if (!customElements.get(tagName)) {
-            customElements.define(tagName, Element);
-
             if (process.env.NODE_ENV !== 'production')
-              console.log(`🌞 %c<${tagName}>`, 'font-weight:bold;color:white;', node);
+              console.log(`🌞 %c<${tagName}>%o`, 'font-weight:bold;color:white;', node);
+
+            customElements.define(tagName, Element);
           }
-        } else {
-          if (process.env.NODE_ENV !== 'production')
+        } catch (error) {
+          if (process.env.NODE_ENV !== 'production' && error instanceof InvalidElementError)
             console.error(
-              `⛅ %c<${tagName}> not found. Please create a Custom Element in \`src/elements/${tagName}.{ts,js}\`. 
+              `⛅ %c<${tagName}> not found!
               
-%c🧙 Here. I'll make it easy for you: 
-%cecho "export default class extends HTMLElement { connectedCallback() { /** Een goed begin is het halve werk. */ } }" > src/elements/${tagName}.ts
+%c🧙 Create \`src/elements/${tagName}.ts\` and use the \`@element\` snippet to create a Custom Element class.
 `,
               'font-weight:bold;',
               'font-weight:bold;color:white;',
-              'color:white;',
             );
         }
       })();
