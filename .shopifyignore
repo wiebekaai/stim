@@ -4,9 +4,9 @@
 
 node_modules
 
-*.map
-*.toml
-*.md
+_.map
+_.toml
+\*.md
 
 .gitignore
 .shopifyignore
@@ -21,4 +21,5 @@ rollup.config.mjs
 tailwind.config.js
 
 # Only include compiled assets
+
 /src/

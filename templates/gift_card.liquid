@@ -92,10 +92,10 @@
     {% endstyle %}
 
     {%- unless settings.type_body_font.system? -%}
-      <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+      {{- settings.type_body_font | font_url | preload_tag: type: 'font/woff2', crossorigin: true, as: 'font' -}}
     {%- endunless -%}
     {%- unless settings.type_header_font.system? -%}
-      <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+      {{- settings.type_header_font | font_url | preload_tag: type: 'font/woff2', crossorigin: true, as: 'font' -}}
     {%- endunless -%}
 
     {{ 'template-giftcard.css' | asset_url | stylesheet_tag }}
@@ -130,6 +130,7 @@
           {{ settings.logo | image_url: width: 570 | image_tag: class: 'gift-card__image', alt: logo_alt }}
         {%- else %}
           <img
+            loading="lazy"
             class="gift-card__image"
             src="{{ 'gift-card/card.svg' | shopify_asset_url }}"
             alt=""
@@ -158,7 +159,6 @@
       <div class="gift-card__buttons no-print">
         <span class="gift-card__copy-success form__message" role="status"></span>
         <template>
-          {%- render 'icon-success' -%}
           {{ 'gift_cards.issued.copy_code_success' | t }}
         </template>
         <button class="button gift-card__copy-button">{{ 'gift_cards.issued.copy_code' | t }}</button>

@@ -1,0 +1,13 @@
+{%- comment -%}
+  {{- 'founders.woff2' | asset_url | preload_tag: crossorigin: true, type: 'font/woff2', as: 'font' -}}
+
+  {%- style -%}
+    @font-face {
+      font-family: 'Founders Grotesk';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('{{ 'founders.woff2' | asset_url }}') format('woff2');
+    }
+  {%- endstyle -%}
+{%- endcomment -%}
