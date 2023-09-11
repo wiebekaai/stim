@@ -41,11 +41,9 @@
   },
   "devDependencies": {
     "@parcel/config-default": "^2.9.3",
-    "@parcel/resolver-glob": "^2.9.3",
     "@shopify/prettier-plugin-liquid": "^1.2.3",
     "concurrently": "^8.2.1",
     "parcel": "^2.9.3",
-    "parcel-namer-custom": "^0.2.0",
     "parcel-namer-rewrite": "2.0.0-rc.3",
     "postcss": "^8.4.29",
     "postcss-import": "^15.1.0",

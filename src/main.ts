@@ -1,3 +1,5 @@
+import elementImports from '@/elements';
+
 const observeAddedElementNodes = (node: HTMLElement, callback: (node: HTMLElement) => unknown) =>
   new window.MutationObserver((mutations) =>
     mutations.forEach(({ addedNodes }) =>
@@ -9,21 +11,6 @@ const observeAddedElementNodes = (node: HTMLElement, callback: (node: HTMLElemen
     childList: true,
     subtree: true,
   });
-
-const elementImportsByPath = import(
-  /** @ts-ignore */
-  `./elements/*`
-) as unknown as Record<string, () => Promise<{ default: CustomElementConstructor }>>;
-
-const elementImports = Object.fromEntries(
-  Object.entries(elementImportsByPath)
-    .filter(([, elementImport]) => elementImport)
-    .map(([filepath, elementImport]) => [
-      // Path to tag name
-      filepath.split('/').pop()!.replace('.ts', '').replace('.js', ''),
-      async () => elementImport().then(({ default: Element }) => Element),
-    ]),
-);
 
 class InvalidElementError extends Error {}
 
@@ -43,13 +30,12 @@ const registerElements = async (node: HTMLElement) =>
             : setTimeout(resolve, 200);
         });
 
-        const elementImport = elementImports[tagName];
-
+        const elementImport = elementImports[tagName]!;
         try {
           if (typeof elementImport !== 'function') throw new InvalidElementError();
 
           // Import + define element
-          const Element = await elementImport();
+          const Element = await elementImport().then(({ default: d }) => d);
 
           if (typeof Element !== 'function') throw new InvalidElementError();
 
@@ -64,7 +50,7 @@ const registerElements = async (node: HTMLElement) =>
           if (process.env.NODE_ENV !== 'production') {
             if (error instanceof InvalidElementError) {
               console.warn(
-                `⛅ %c<${tagName}> not found! Create a Custom Element in \`src/elements/${tagName}.{js,ts}\`.
+                `⛅ %c<${tagName}> not found! Please create your Custom Element in \`src/elements/${tagName}.{js,ts}\` and import it in \`src/elements.index.ts\`.
                 
   %c🧙 Use the \`@element\` snippet to get started.
   `,

@@ -4,12 +4,19 @@
     "scope": "typescript,javascript",
     "prefix": "@element",
     "body": [
-      "export default class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} extends HTMLElement {",
+      // "export default class ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/g} extends HTMLElement {",
+      "export default class extends HTMLElement {",
       "  connectedCallback() {",
       "    console.log(`It's alive! 🧟`);",
       "    $0",
       "  }",
       "}"
     ]
+  },
+  "Import Element": {
+    "description": "Import Custom Element",
+    "scope": "typescript,javascript",
+    "prefix": "@import",
+    "body": ["'${1:custom-element}': () => import ('./$1'),"]
   }
 }

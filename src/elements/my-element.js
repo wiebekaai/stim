@@ -1,4 +1,4 @@
-export default class MyElement extends HTMLElement {
+export default class extends HTMLElement {
   connectedCallback() {
     console.log(`It's alive! 🧟`);
 
