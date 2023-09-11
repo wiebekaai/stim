@@ -16,11 +16,13 @@ const elementImportsByPath = import(
 ) as unknown as Record<string, () => Promise<{ default: CustomElementConstructor }>>;
 
 const elementImports = Object.fromEntries(
-  Object.entries(elementImportsByPath).map(([filepath, elementImport]) => [
-    // Path to tag name
-    filepath.split('/').pop()!.replace('.ts', '').replace('.js', ''),
-    async () => elementImport().then(({ default: Element }) => Element),
-  ]),
+  Object.entries(elementImportsByPath)
+    .filter(([, elementImport]) => elementImport)
+    .map(([filepath, elementImport]) => [
+      // Path to tag name
+      filepath.split('/').pop()!.replace('.ts', '').replace('.js', ''),
+      async () => elementImport().then(({ default: Element }) => Element),
+    ]),
 );
 
 class InvalidElementError extends Error {}
@@ -44,7 +46,7 @@ const registerElements = async (node: HTMLElement) =>
         const elementImport = elementImports[tagName];
 
         try {
-          if (!elementImport) throw new InvalidElementError();
+          if (typeof elementImport !== 'function') throw new InvalidElementError();
 
           // Import + define element
           const Element = await elementImport();
@@ -59,15 +61,20 @@ const registerElements = async (node: HTMLElement) =>
             customElements.define(tagName, Element);
           }
         } catch (error) {
-          if (process.env.NODE_ENV !== 'production' && error instanceof InvalidElementError)
-            console.error(
-              `⛅ %c<${tagName}> not found!
-              
-%c🧙 Create \`src/elements/${tagName}.ts\` and use the \`@element\` snippet to create a Custom Element class.
-`,
-              'font-weight:bold;',
-              'font-weight:bold;color:white;',
-            );
+          if (process.env.NODE_ENV !== 'production') {
+            if (error instanceof InvalidElementError) {
+              console.warn(
+                `⛅ %c<${tagName}> not found! Create a Custom Element in \`src/elements/${tagName}.{js,ts}\`.
+                
+  %c🧙 Use the \`@element\` snippet to get started.
+  `,
+                'font-weight:bold;',
+                'font-weight:bold;color:white;',
+              );
+            } else {
+              throw error;
+            }
+          }
         }
       })();
     });

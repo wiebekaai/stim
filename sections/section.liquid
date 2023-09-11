@@ -1,19 +1,10 @@
-<cart-drawer>
-  <h1 data-title></h1>
-  <p data-description></p>
-  <div data-products class="flex flex-col gap-3">
-    {%- for i in (0..5) -%}
-      <div class="bg-green-500 w-4 aspect-[1/1]"></div>
-    {%- endfor -%}
-    234qwdssssssssssss23433232
-  </div>
-  <div class="bg-black h-16 w-10">oh ok</div>
-</cart-drawer>
+<my-element class="block py-4">This is an example element. </my-element>
+<missing-element class="block py-4"> This is an example missing element. Check the console :).</missing-element>
 
-<product-form>asdasd </product-form>
 {% schema %}
 {
   "name": "Section",
+  "class": "p-6",
   "settings": [],
   "enabled_on": {
     "templates": ["*"]

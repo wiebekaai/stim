@@ -5,7 +5,7 @@
     "dev": "echo \"ap.dev.\" > snippets/ap.dev.liquid && concurrently -n '📦,🏪' -c yellow,green -k \"npm:watch\" \"npm:start\"",
     "start": "shopify theme dev --environment development --live-reload full-page",
     "build": "rimraf -g assets/ap.* snippets/ap.dev.liquid && parcel build $npm_package_config_source",
-    "watch": "rimraf -g assets/ap.dev.* .parcel-cache && parcel watch --no-hmr --no-autoinstall --log-level warn $npm_package_config_source"
+    "watch": "rimraf -g assets/ap.dev.* .parcel-cache && parcel watch --no-hmr --no-autoinstall --no-cache --log-level info $npm_package_config_source"
   },
   "config": {
     "source": "src/main.ts src/main.css"
